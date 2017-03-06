@@ -10,9 +10,23 @@ export class InfoServiceService {
   constructor(private http: Http) { }
 
 
-  getSpecificSalesPerson(id : number){
-    var tmp;
-    tmp = this.http.get("http://localhost:5000/api/sellers/${id}");
+  getAllSellers() : Observable<Salesperson[]> {
+    return this.http.get("http://localhost:5000/api/sellers")
+        .map(response => {
+          return <Salesperson[]> response.json();
+        });
+  }
+
+  getSellerbyID(id : number): Observable<Salesperson> {
+      return this.http.get(`http://localhost:5000/api/sellers/${id}`).map(response => {
+          return <Salesperson> response.json();
+      })
+  }
+
+  addSeller(newSeller : Salesperson) : any {
+      console.log("inside addSeller in info service");
+      return this.http.post("http://localhost:5000/api/sellers", newSeller).map(
+          response => { return response}); //needs to return a toastr message
   }
 
 }
