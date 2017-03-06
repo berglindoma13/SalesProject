@@ -19,7 +19,17 @@
     </ul>
 </div>
 
+<!--This needs to be in a dialog-->
+<form [formGroup]="addProductForm" (ngSubmit)="onNewProduct($event)">
+    <input formControlName="name" type="name" placeholder="Product name">
+    <input formControlName="price" type="price" placeholder="Product price">
+    <input formControlName="imagePath" type="imagePath" placeholder="Product image">
+    <button type="submit">Add Product</button>
+</form>
+
 <button type="button" (click)="getTopTen()"> Top 10 Products</button>
+
+
 
 
 

@@ -24,7 +24,10 @@ export class MainPageComponent implements OnInit {
 
   closeResult : string;
 
-  constructor(private fb : FormBuilder, private infoService : InfoServiceService, private modalService: NgbModal, private router : Router) { }
+  constructor(private fb : FormBuilder,
+              private infoService : InfoServiceService,
+              private modalService: NgbModal,
+              private router : Router) { }
 
   ngOnInit() {
 
@@ -50,7 +53,6 @@ export class MainPageComponent implements OnInit {
 
   onNewSeller(event){
     let formData = this.addSellerForm.value;
-    console.log(formData);
     this.addSeller = formData;
     this.infoService.addSeller(this.addSeller).subscribe(result => {
       this.sellers.push(result);

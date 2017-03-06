@@ -3,6 +3,8 @@ import {Router, ActivatedRoute} from "@angular/router";
 import { Salesperson } from '../salesperson';
 import { Product } from '../product';
 import { InfoServiceService } from '../info-service.service';
+import { FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-details-page',
@@ -16,8 +18,20 @@ export class DetailsPageComponent implements OnInit {
   allProducts : Product[];
   topTenProducts : Product[];
 
+  newProduct : Product;
 
-  constructor(private router : Router,
+  private addProductForm = this.fb.group({
+        id : [0],
+        quantitySold : [0],
+        quantityInStock : [0],
+        imagePath : [""],
+        name : [""],
+        price : []
+  });
+
+
+  constructor(private fb : FormBuilder,
+              private router : Router,
               private route : ActivatedRoute,
               private infoService : InfoServiceService) {
     this.topTenProducts = [];
@@ -53,6 +67,15 @@ export class DetailsPageComponent implements OnInit {
       }
       return 0;
 
+  }
+
+  onNewProduct(event){
+    this.newProduct = this.addProductForm.value;
+    this.infoService.addProduct(this.newProduct, this.sellerId).subscribe(result =>
+    {
+        this.allProducts.push(result);
+    });
+    this.getTopTen();
   }
 
 }

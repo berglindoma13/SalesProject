@@ -1,4 +1,4 @@
-<template #content let-c="close" let-d="dismiss">
+<!--template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Modal title</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -17,7 +17,7 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
   </div>
-</template>
+</--template-->
 
 <h1>Seller List </h1>
 
@@ -26,8 +26,10 @@
     <a class="navbar-link active" (click)="DetailsPage(seller.id)">Seller: {{seller.name}}, Main Product: {{seller.category}} </a>
   </li>
 </ul>
+
 <!--button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button-->
 
+<!--This needs to be in a dialog-->
 <form [formGroup]="addSellerForm" (ngSubmit)="onNewSeller($event)">
   <input formControlName="name" type="name" placeholder="Seller name">
   <input formControlName="category" type="category" placeholder="Seller category">

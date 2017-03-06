@@ -30,6 +30,12 @@ export class InfoServiceService {
           });
   }
 
+  addProduct(newProduct : Product, sellerId : number) : Observable <Product> {
+      return this.http.post(`http://localhost:5000/api/sellers/${sellerId}/products`, newProduct).map(response => {
+          return <Product> response.json()
+      });
+  }
+
   getSellerProducts(id : number) : Observable<Product[]> {
       return this.http.get(`http://localhost:5000/api/sellers/${id}/products`).map( response => {
           return <Product[]> response.json();
