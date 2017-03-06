@@ -24,16 +24,21 @@ export class InfoServiceService {
       })
   }
 
-  addSeller(newSeller : Salesperson) : any {
-      console.log("inside addSeller in info service");
+  addSeller(newSeller : Salesperson) : Observable<Salesperson> {
       return this.http.post("http://localhost:5000/api/sellers", newSeller).map(
-          response => { return response}); //needs to return a toastr message
+          response => { return <Salesperson> response.json()
+          });
   }
 
   getSellerProducts(id : number) : Observable<Product[]> {
       return this.http.get(`http://localhost:5000/api/sellers/${id}/products`).map( response => {
           return <Product[]> response.json();
       })
+  }
+
+  //need to add observable for error control
+  editSeller(editedSeller : Salesperson) : any {
+      return this.http.put(`http://localhost:5000/api/sellers/${editedSeller.id}`, editedSeller);
   }
 
 }

@@ -26,4 +26,11 @@
     <a class="navbar-link active" (click)="DetailsPage(seller.id)">Seller: {{seller.name}}, Main Product: {{seller.category}} </a>
   </li>
 </ul>
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+<!--button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button-->
+
+<form [formGroup]="addSellerForm" (ngSubmit)="onNewSeller($event)">
+  <input formControlName="name" type="name" placeholder="Seller name">
+  <input formControlName="category" type="category" placeholder="Seller category">
+  <input formControlName="imagePath" type="imagePath" placeholder="Seller image">
+  <button type="submit">Add seller</button>
+</form>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Salesperson } from '../salesperson'
 import { InfoServiceService } from '../info-service.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import {RouterModule, Router} from '@angular/router';
+import { Router} from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-main-page',
@@ -12,12 +13,18 @@ import {RouterModule, Router} from '@angular/router';
 export class MainPageComponent implements OnInit {
   private sellers : Salesperson[];
 
-  private newSellerName : string;
-  private newSellerCategory : string;
+  private addSeller : Salesperson;
+
+  private addSellerForm = this.fb.group({
+    id : [0],
+    name: ["", Validators.required],
+    category: [""],
+    imagePath : [""]
+  });
 
   closeResult : string;
 
-  constructor(private infoService : InfoServiceService, private modalService: NgbModal, private router : Router) { }
+  constructor(private fb : FormBuilder, private infoService : InfoServiceService, private modalService: NgbModal, private router : Router) { }
 
   ngOnInit() {
 
@@ -37,13 +44,17 @@ export class MainPageComponent implements OnInit {
 
   }
 
-  /*addSeller(){
-    const newSeller : Salesperson = {id : 0, name : this.newSellerName, category : this.newSellerCategory, image: ""};
-    this.infoService.addSeller(newSeller);
-  }*/
-
   DetailsPage(id : number){
     this.router.navigate(['details', id]);
+  }
+
+  onNewSeller(event){
+    let formData = this.addSellerForm.value;
+    console.log(formData);
+    this.addSeller = formData;
+    this.infoService.addSeller(this.addSeller).subscribe(result => {
+      this.sellers.push(result);
+    })
   }
 
   open(content) {
