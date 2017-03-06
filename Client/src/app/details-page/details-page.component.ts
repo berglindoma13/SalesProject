@@ -17,7 +17,11 @@ export class DetailsPageComponent implements OnInit {
   topTenProducts : Product[];
 
 
-  constructor(private router : Router, private route : ActivatedRoute, private infoService : InfoServiceService) { }
+  constructor(private router : Router,
+              private route : ActivatedRoute,
+              private infoService : InfoServiceService) {
+    this.topTenProducts = [];
+  }
 
   ngOnInit() {
     this.sellerId = this.route.snapshot.params['id'];
@@ -33,9 +37,22 @@ export class DetailsPageComponent implements OnInit {
   }
 
   getTopTen(){
-      for(let i in this.allProducts){
-          
+      for(const i in this.allProducts){
+          this.topTenProducts.push(this.allProducts[i]);
+          this.topTenProducts.sort(this.compare);
+          this.topTenProducts = this.topTenProducts.slice(0,10);
       }
+  }
+
+  compare(a : Product ,b : Product){
+      if(a.quantitySold < b.quantitySold ){
+          return -1;
+      }
+      if(a.quantitySold > b.quantitySold){
+          return 1;
+      }
+      return 0;
+
   }
 
 }

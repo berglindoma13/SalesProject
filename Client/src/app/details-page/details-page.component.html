@@ -8,9 +8,18 @@
 </div>
 
 <div>
+    <p>All Products</p>
     <ul *ngFor="let product of allProducts">
         <li>{{product.name}}</li>
     </ul>
+
+    <p>top ten products</p>
+    <ul *ngFor="let topten of topTenProducts">
+        <li>{{topten.name}}</li>
+    </ul>
 </div>
+
+<button type="button" (click)="getTopTen()"> Top 10 Products</button>
+
 
 
