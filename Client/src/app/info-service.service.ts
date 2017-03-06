@@ -39,12 +39,19 @@ export class InfoServiceService {
   getSellerProducts(id : number) : Observable<Product[]> {
       return this.http.get(`http://localhost:5000/api/sellers/${id}/products`).map( response => {
           return <Product[]> response.json();
-      })
+      });
   }
 
-  //need to add observable for error control
-  editSeller(editedSeller : Salesperson) : any {
-      return this.http.put(`http://localhost:5000/api/sellers/${editedSeller.id}`, editedSeller);
+  editSeller(editedSeller : Salesperson) : Observable<Salesperson> {
+      return this.http.put(`http://localhost:5000/api/sellers/${editedSeller.id}`, editedSeller).map( response => {
+          return <Salesperson> response.json()
+      });
+  }
+
+  editProduct(productId : number, sellerId : number, editedProduct : Product) : Observable <Product> {
+      return this.http.put(`http://localhost:5000/api/sellers/${sellerId}/products/${productId}`, editedProduct).map( response => {
+          return <Product> response.json()
+      });
   }
 
 }
