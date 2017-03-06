@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Salesperson } from './salesperson';
+import { Product } from './product';
 import { Observable } from 'rxjs/Observable';
 import "rxjs/rx";
 
@@ -27,6 +28,12 @@ export class InfoServiceService {
       console.log("inside addSeller in info service");
       return this.http.post("http://localhost:5000/api/sellers", newSeller).map(
           response => { return response}); //needs to return a toastr message
+  }
+
+  getSellerProducts(id : number) : Observable<Product[]> {
+      return this.http.get(`http://localhost:5000/api/sellers/${id}/products`).map( response => {
+          return <Product[]> response.json();
+      })
   }
 
 }

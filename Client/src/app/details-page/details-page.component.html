@@ -1,3 +1,16 @@
-<p>
-  details-page works!
-</p>
+<div>
+    <img *ngIf = seller src={{seller.imagePath}}>
+</div>
+
+<div *ngIf = seller class="info">
+    <p > {{seller.name}}</p>
+    <p> {{seller.category}}</p>
+</div>
+
+<div>
+    <ul *ngFor="let product of allProducts">
+        <li>{{product.name}}</li>
+    </ul>
+</div>
+
+

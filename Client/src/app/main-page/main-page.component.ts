@@ -34,7 +34,7 @@ export class MainPageComponent implements OnInit {
       this.sellers = result;
     });
 
-    //this.infoService.getSellerbyID(1).subscribe(successHandler, errorHandler);
+
   }
 
   /*addSeller(){
