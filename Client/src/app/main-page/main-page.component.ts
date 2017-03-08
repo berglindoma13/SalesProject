@@ -46,7 +46,7 @@ export class MainPageComponent implements OnInit {
 
 
   }
-
+  
   DetailsPage(id : number){
     this.router.navigate(['details', id]);
   }
