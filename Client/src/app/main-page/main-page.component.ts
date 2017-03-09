@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Salesperson } from '../salesperson'
+import { Salesperson } from '../salesperson';
 import { InfoServiceService } from '../info-service.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { Router} from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AddSellerDialogComponent } from '../add-seller-dialog/add-seller-dialog.component';
 
 @Component({
   selector: 'app-main-page',
@@ -12,69 +12,45 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class MainPageComponent implements OnInit {
   private sellers : Salesperson[];
-
-  private addSeller : Salesperson;
-
-  private addSellerForm = this.fb.group({
-    id : [0],
-    name: ["", Validators.required],
-    category: [""],
-    imagePath : [""]
-  });
-
   closeResult : string;
 
-  constructor(private fb : FormBuilder,
-              private infoService : InfoServiceService,
+  constructor(private infoService : InfoServiceService,
               private modalService: NgbModal,
-              private router : Router) { }
+              private router : Router) {
+  }
 
   ngOnInit() {
-
-    /*let successHandler = (result) => {
-      this.sellers = result;
-    };
-
-    let errorHandler = (err) => {
-      //TODO Toastr error handling
-      console.log("error " + err);
-    };*/
-
     this.infoService.getAllSellers().subscribe(result => {
       this.sellers = result;
+    },
+    err => {
+      //TODO Toastr error handling
     });
-
-
   }
-  
+
   DetailsPage(id : number){
     this.router.navigate(['details', id]);
   }
 
-  onNewSeller(event){
-    let formData = this.addSellerForm.value;
-    this.addSeller = formData;
-    this.infoService.addSeller(this.addSeller).subscribe(result => {
-      this.sellers.push(result);
+  addSeller(){
+    console.log("opening add seller module");
+    const instance = this.modalService.open(AddSellerDialogComponent);
+    instance.componentInstance.seller = {};
+    instance.result.then(result => {
+      console.log("dialog closed with OK");
+      const newSeller = {
+        id : this.sellers.length + 1,
+        name : result.name,
+        category: result.category,
+        imagePath: result.imagePath
+      };
+      this.infoService.addSeller(newSeller).subscribe(result => {
+        console.log("adding successful");
+      }, err => {
+        console.log("Dialog was cancelled");
+      })
+
     })
-  }
-
-  open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
   }
 
 }

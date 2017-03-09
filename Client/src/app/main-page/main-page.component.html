@@ -27,12 +27,6 @@
   </li>
 </ul>
 
-<!--button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button-->
+<button class="btn btn-lg btn-outline-primary" (click)="addSeller()">Add Seller</button>
+<template ngbModalContainer></template>
 
-<!--This needs to be in a dialog-->
-<form [formGroup]="addSellerForm" (ngSubmit)="onNewSeller($event)">
-  <input formControlName="name" type="name" placeholder="Seller name">
-  <input formControlName="category" type="category" placeholder="Seller category">
-  <input formControlName="imagePath" type="imagePath" placeholder="Seller image">
-  <button type="submit">Add seller</button>
-</form>

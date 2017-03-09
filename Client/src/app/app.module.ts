@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
 import { InfoServiceService } from './info-service.service';
+import { AddSellerDialogComponent } from './add-seller-dialog/add-seller-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    DetailsPageComponent
+    DetailsPageComponent,
+    AddSellerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { InfoServiceService } from './info-service.service';
     NgbModule.forRoot()
   ],
   providers: [InfoServiceService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+    entryComponents: [AddSellerDialogComponent]
 })
 export class AppModule { }
