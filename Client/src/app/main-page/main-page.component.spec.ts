@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { InfoServiceService } from '../info-service.service';
 import { MainPageComponent } from './main-page.component';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 describe('MainPageComponent', () => {
   const mockService = {
@@ -23,7 +24,13 @@ describe('MainPageComponent', () => {
               }
           }
       }
+
   };
+
+  const mockModal = {
+        open: jasmine.createSpy("open");
+
+  }
 
   let component: MainPageComponent;
   let fixture: ComponentFixture<MainPageComponent>;
@@ -34,6 +41,9 @@ describe('MainPageComponent', () => {
         providers:[{
           provide: InfoServiceService,
             useValue: mockService
+        }, {
+            provide: NgbModal,
+            useValue: mockModal
         }]
     })
     .compileComponents();
