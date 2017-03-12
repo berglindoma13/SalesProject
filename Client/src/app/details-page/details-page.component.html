@@ -1,33 +1,56 @@
-<div>
-    <img *ngIf = seller src={{seller.imagePath}}>
+<div >
+    <div id="header" class="row" *ngIf = seller>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+            <img src={{seller.imagePath}}>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+            <p> {{seller.name}} <br> {{seller.category}}</p>
+        </div>
+    </div>
 </div>
 
-<div *ngIf = seller class="info">
-    <p > {{seller.name}}</p>
-    <p> {{seller.category}}</p>
-</div>
+        
 
-<div>
-    <p>All Products</p>
-    <ul *ngFor="let product of allProducts">
-        <li>{{product.name}}</li>
-    </ul>
+<body>
+    <ngb-tabset>
+        <ngb-tab title="All Products">
+            <template ngbTabContent>
+            <div id="products" class="row">       
+                <p>All Products</p>
+                <div id="product" *ngFor="let product of allProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <div id="productInCenter">
+                        <img src={{product.imagePath}}>
+                        <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
+                    </div>
+                </div>
+            </div>
+            </template>
+        </ngb-tab>
+        <ngb-tab title="Top Ten Products" (click)="getTopTen()">
+            <template ngbTabContent>
+                <div>
+                    <p>top ten products</p>
+                    <ul *ngFor="let topten of topTenProducts">
+                        <li>{{topten.name}} &emsp; {{topten.price}}</li>
+                    </ul>
+                </div>
+                <button type="button" (click)="getTopTen()"> Top 10 Products</button>
+            </template>
+        </ngb-tab>
+    </ngb-tabset>
 
-    <p>top ten products</p>
-    <ul *ngFor="let topten of topTenProducts">
-        <li>{{topten.name}}</li>
-    </ul>
-</div>
+    
 
-<!--This needs to be in a dialog-->
-<form [formGroup]="addProductForm" (ngSubmit)="onNewProduct($event)">
-    <input formControlName="name" type="name" placeholder="Product name">
-    <input formControlName="price" type="price" placeholder="Product price">
-    <input formControlName="imagePath" type="imagePath" placeholder="Product image">
-    <button type="submit">Add Product</button>
-</form>
 
-<button type="button" (click)="getTopTen()"> Top 10 Products</button>
+
+    <!--This needs to be in a dialog-->
+    <form [formGroup]="addProductForm" (ngSubmit)="onNewProduct($event)">
+        <input formControlName="name" type="name" placeholder="Product name">
+        <input formControlName="price" type="price" placeholder="Product price">
+        <input formControlName="imagePath" type="imagePath" placeholder="Product image">
+        <button type="submit">Add Product</button>
+    </form>
+</body>
 
 
 
