@@ -25,7 +25,7 @@ import { AddSellerDialogComponent } from './add-seller-dialog/add-seller-dialog.
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({enableHtml: true}),
     RouterModule.forRoot([
        { path: '', redirectTo: 'main', pathMatch:'full'},
        { path: 'main', component: MainPageComponent},

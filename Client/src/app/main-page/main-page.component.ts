@@ -23,11 +23,11 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit() {
     this.infoService.getAllSellers().subscribe(result => {
-      this.sellers = result;
-    },
-    err => {
-      this.displayError("Could not get sellers","Error");
-    });
+        this.sellers = result;
+      },
+      err => {
+        this.displayError("Could not get sellers","Error");
+      });
   }
 
   DetailsPage(id : number){
