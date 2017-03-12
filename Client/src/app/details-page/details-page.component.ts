@@ -53,6 +53,8 @@ export class DetailsPageComponent implements OnInit {
     },
     err => {
       this.displayWarning("this Seller has no products","Warning");
+      this.router.navigate(['main']);
+
     });
   }
 
@@ -62,6 +64,9 @@ export class DetailsPageComponent implements OnInit {
       this.topTenProducts.push(this.allProducts[i]);
       this.topTenProducts.sort(this.compare);
       this.topTenProducts = this.topTenProducts.slice(0, 10);
+    }
+    if(this.topTenProducts.length == 0){
+      this.displayInfo("This seller has no top ten products", "Sorry")
     }
   }
 
@@ -90,6 +95,11 @@ export class DetailsPageComponent implements OnInit {
 
   displayWarning(message, error){
     this.toastr.warning(message,error);
+  }
+
+
+  displayInfo(message,error){
+    this.toastr.info(message,error);
   }
 
 }
