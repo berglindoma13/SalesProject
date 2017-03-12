@@ -21,7 +21,9 @@
       "styles": [
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
-        "../node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js"
+        "../node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js",
+        "../node_modules/ngx-toastr/toastr.css"
+
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

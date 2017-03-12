@@ -4,7 +4,7 @@ import {Salesperson} from '../salesperson';
 import {Product} from '../product';
 import {InfoServiceService} from '../info-service.service';
 import {FormBuilder, Validators} from '@angular/forms';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details-page',
@@ -33,7 +33,8 @@ export class DetailsPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private infoService: InfoServiceService) {
+              private infoService: InfoServiceService,
+              private toastr: ToastrService) {
     this.topTenProducts = [];
   }
 
@@ -42,11 +43,16 @@ export class DetailsPageComponent implements OnInit {
 
     this.infoService.getSellerbyID(this.sellerId).subscribe(result => {
       this.seller = result;
-      console.log(this.seller);
+    },
+    err => {
+      this.displayError("Could not get seller by id","Error");
     });
 
     this.infoService.getSellerProducts(this.sellerId).subscribe(result => {
       this.allProducts = result;
+    },
+    err => {
+      this.displayWarning("this Seller has no products","Warning");
     });
   }
 
@@ -76,6 +82,14 @@ export class DetailsPageComponent implements OnInit {
       this.allProducts.push(result);
     });
     this.getTopTen();
+  }
+
+  displayError(message, error){
+    this.toastr.error(message,error);
+  }
+
+  displayWarning(message, error){
+    this.toastr.warning(message,error);
   }
 
 }

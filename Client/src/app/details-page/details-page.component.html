@@ -4,18 +4,18 @@
             <img src={{seller.imagePath}}>
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-            <p> {{seller.name}} <br> {{seller.category}}</p>
+            <p> Seller: {{seller.name}} <br> Category: {{seller.category}}</p>
         </div>
     </div>
 </div>
 
-        
+
 
 <body>
     <ngb-tabset>
         <ngb-tab title="All Products">
             <template ngbTabContent>
-            <div id="products" class="row">       
+            <div id="products" class="row">
                 <p>All Products</p>
                 <div id="product" *ngFor="let product of allProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div id="productInCenter">
@@ -39,7 +39,7 @@
         </ngb-tab>
     </ngb-tabset>
 
-    
+
 
 
 

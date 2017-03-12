@@ -4,6 +4,7 @@ import { InfoServiceService } from '../info-service.service';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { Router} from '@angular/router';
 import { AddSellerDialogComponent } from '../add-seller-dialog/add-seller-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-main-page',
@@ -16,6 +17,7 @@ export class MainPageComponent implements OnInit {
 
   constructor(private infoService : InfoServiceService,
               private modalService: NgbModal,
+              private toaster: ToastrService,
               private router : Router) {
   }
 
@@ -24,7 +26,7 @@ export class MainPageComponent implements OnInit {
       this.sellers = result;
     },
     err => {
-      //TODO Toastr error handling
+      this.displayError("Could not get sellers","Error");
     });
   }
 
@@ -51,6 +53,10 @@ export class MainPageComponent implements OnInit {
       })
 
     })
+  }
+
+  displayError(message,error) {
+    this.toaster.error(message, error);
   }
 
 }
