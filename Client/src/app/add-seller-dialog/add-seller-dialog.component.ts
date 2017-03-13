@@ -15,7 +15,6 @@ export class AddSellerDialogComponent{
 
   constructor( public activeModal: NgbActiveModal,
                private toaster: ToastrService ) {
-    console.log("inside add seller");
   }
 
 

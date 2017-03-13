@@ -19,7 +19,7 @@ import {AddSellerDialogComponent} from "../add-seller-dialog/add-seller-dialog.c
 export class DetailsPageComponent implements OnInit {
   sellerId: number;
   seller: Salesperson;
-  public allProducts: Product[];
+  allProducts: Product[];
   topTenProducts: Product[];
 
   newProduct: Product;
@@ -91,15 +91,13 @@ export class DetailsPageComponent implements OnInit {
         name: result.name,
         price: result.price,
       };
-      this.infoService.addProduct(newProduct, this.newProduct.id).subscribe(result => {
+      this.infoService.addProduct(newProduct, this.sellerId).subscribe(result => {
         this.allProducts.push(result);
-        console.log("adding successful");
+        this.displaySuccess("Product was successfully added", "Success");
       }, err => {
-        console.log("Dialog was cancelled");
+        this.displayError("Product could not be added", err);
       })
-
-    })
-
+    });
     this.getTopTen();
   }
 
@@ -120,19 +118,22 @@ export class DetailsPageComponent implements OnInit {
     })
   }
 
-  editProduct(){
+  editProduct(productId: number){
     const instance = this.modalService.open(AddProductDialogComponent);
     instance.componentInstance.product = {};
     instance.componentInstance.edit = true;
     instance.result.then(result => {
       const editedProduct = {
-        id : this.seller.id + 1,
+        id : productId,
         quantitySold: result.quantitySold,
         quantityInStock: result.quantityInStock,
         imagePath: result.imagePath,
         name: result.name,
         price: result.price,
       };
+      this.infoService.editProduct(this.sellerId, editedProduct).subscribe(result => {
+
+      })
     })
   }
 
@@ -144,9 +145,8 @@ export class DetailsPageComponent implements OnInit {
     this.toastr.warning(message,error);
   }
 
-
-  displayInfo(message,error){
-    this.toastr.info(message,error);
+  displaySuccess(message,success){
+    this.toastr.success(message,success);
   }
 
 }

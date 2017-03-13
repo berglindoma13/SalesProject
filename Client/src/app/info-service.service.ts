@@ -26,7 +26,8 @@ export class InfoServiceService {
 
   addSeller(newSeller : Salesperson) : Observable<Salesperson> {
       return this.http.post("http://localhost:5000/api/sellers", newSeller).map(
-          response => { return <Salesperson> response.json()
+          response => {
+              return <Salesperson> response.json()
           });
   }
 
@@ -44,13 +45,13 @@ export class InfoServiceService {
 
   editSeller(editedSeller : Salesperson) : Observable<Salesperson> {
       return this.http.put(`http://localhost:5000/api/sellers/${editedSeller.id}`, editedSeller).map( response => {
-          return <Salesperson> response.json()
+          return <Salesperson> response.json();
       });
   }
 
-  editProduct(productId : number, sellerId : number, editedProduct : Product) : Observable <Product> {
-      return this.http.put(`http://localhost:5000/api/sellers/${sellerId}/products/${productId}`, editedProduct).map( response => {
-          return <Product> response.json()
+  editProduct(sellerId : number, editedProduct : Product) : Observable <Product> {
+      return this.http.put(`http://localhost:5000/api/sellers/${sellerId}/products/${editedProduct.id}`, editedProduct).map( response => {
+            return <Product> response.json();
       });
   }
 

@@ -5,6 +5,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {fn} from "@angular/compiler/src/output/output_ast";
 
 
 /** it should display a list of sellers if the backend returns a list
@@ -39,7 +40,7 @@ describe('MainPageComponent', () => {
               }
           }
       },
-      addSeller: function() {
+      addSeller: function(AddedSeller) {
         return {
           subscribe: function(fnSuccess, fnError){
             if(mockService.successAddSellers === true){
@@ -61,7 +62,7 @@ describe('MainPageComponent', () => {
         result: {
           then: function(fnSuccess, fnError){
             if(mockModal.pressedOK === true){
-              fnSuccess();
+              mockService.addSeller(mockService.AddedSeller);
             }
             else{
               fnError();
@@ -113,7 +114,19 @@ describe('MainPageComponent', () => {
     fixture.detectChanges();
   });
 
-  describe("When info server returns a list", () => {
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it("should add a new seller", () => {
+    mockService.successAddSellers = true;
+    mockModal.pressedOK = true;
+    //component.addSeller();
+    //NOT DONE
+    //EXPECT SOMETHING
+  });
+
+  describe("Requesting a list from service", () => {
     mockService.successGetSellers = true;
     mockService.sellerList = [];
 
@@ -122,32 +135,36 @@ describe('MainPageComponent', () => {
       //NOT DONE
       //EXPECT SOMETHING
     });
+
+    mockService.successGetSellers = false;
+    mockService.sellerList = [];
+
+    it("should display a message indicating that no products are to be displayed", () => {
+
+      //NOT DONE
+      //EXPECT SOMETHING
+    });
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-
-  describe("when info service returns empty list of sellers", () =>{
-      mockService.successGetSellers = false;
-      mockService.sellerList = [];
-
-      it("should display a message indicating that no products are to be displayed", () => {
-          mockService.getAllSellers();
-          //NOT DONE
-        //EXPECT SOMETHING
-      });
-  })
 
   describe("opening a modal", () => {
-    //NOT DONE
-  })
+    mockModal.pressedOK = true;
+    it("should display a toastr message successful", () => {
+      //NOT DONE
+      //TOASTR MESSAGE SUCCESSFUL
+    });
 
-  describe("Adding a new seller", () => {
-    mockService.successAddSellers = true;
-    mockService.addSeller();
-    //NOT DONE
-    //EXPECT SOMETHING
+    mockModal.pressedOK = false;
+    it("should not display a toastr message successful", () => {
+      //NOT DONE
+      //TOASTR MESSAGE ERROR
+    });
+
+  });
+
+  it("should navigate to a new page", () => {
+    spyOn(component, 'DetailsPage');
+    component.DetailsPage(1);
+    expect(component.DetailsPage).toHaveBeenCalledWith(1);
+    //expect(mockRouter.navigate).toHaveBeenCalledWith('/details/1');
   });
 });
