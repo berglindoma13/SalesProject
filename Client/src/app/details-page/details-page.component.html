@@ -26,15 +26,14 @@
             </div>
             </template>
         </ngb-tab>
-        <ngb-tab title="Top Ten Products" (click)="getTopTen()">
+        <ngb-tab title="Top Ten Products" (tabChange)="getTopTen()">
             <template ngbTabContent>
-                <div>
-                    <p>top ten products</p>
-                    <ul *ngFor="let topten of topTenProducts">
-                        <li>{{topten.name}} &emsp; {{topten.price}}</li>
-                    </ul>
+              <div id="topten" *ngFor="let product of topTenProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div id="toptenInCenter">
+                  <img src={{product.imagePath}}>
+                  <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
                 </div>
-                <button type="button" (click)="getTopTen()"> Top 10 Products</button>
+              </div>
             </template>
         </ngb-tab>
     </ngb-tabset>
@@ -43,14 +42,14 @@
 
 
 
-    <!--This needs to be in a dialog-->
+    <!--This needs to be in a dialog>
     <form [formGroup]="addProductForm" (ngSubmit)="onNewProduct($event)">
         <input formControlName="name" type="name" placeholder="Product name">
         <input formControlName="price" type="price" placeholder="Product price">
         <input formControlName="imagePath" type="imagePath" placeholder="Product image">
         <button type="submit">Add Product</button>
     </form>
-</body>
+</body-->
 
 
 

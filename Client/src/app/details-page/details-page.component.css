@@ -9,12 +9,21 @@
 }
 
 body #product img{
-    width: 220px; 
+    width: 220px;
     height: 200px;
 }
 
 body #product p{
     display:inline-block;
+}
+
+body #topten img{
+  width: 220px;
+  height: 200px;
+}
+
+body #topten p{
+  display: inline-block;
 }
 
 body img {

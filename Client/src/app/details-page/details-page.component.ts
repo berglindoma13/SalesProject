@@ -35,7 +35,6 @@ export class DetailsPageComponent implements OnInit {
               private route: ActivatedRoute,
               private infoService: InfoServiceService,
               private toastr: ToastrService) {
-    this.topTenProducts = [];
   }
 
   ngOnInit() {
@@ -50,6 +49,7 @@ export class DetailsPageComponent implements OnInit {
 
     this.infoService.getSellerProducts(this.sellerId).subscribe(result => {
       this.allProducts = result;
+      this.getTopTen();
     },
     err => {
       this.displayWarning("this Seller has no products","Warning");
@@ -62,9 +62,10 @@ export class DetailsPageComponent implements OnInit {
     this.topTenProducts = [];
     for (const i in this.allProducts) {
       this.topTenProducts.push(this.allProducts[i]);
-      this.topTenProducts.sort(this.compare);
-      this.topTenProducts = this.topTenProducts.slice(0, 10);
     }
+    this.topTenProducts.sort(this.compare);
+    this.topTenProducts = this.topTenProducts.slice(0, 10);
+
     if(this.topTenProducts.length == 0){
       this.displayInfo("This seller has no top ten products", "Sorry")
     }
