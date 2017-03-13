@@ -47,6 +47,7 @@ export class MainPageComponent implements OnInit {
         imagePath: result.imagePath
       };
       this.infoService.addSeller(newSeller).subscribe(result => {
+        this.sellers.push(result);
         console.log("adding successful");
       }, err => {
         console.log("Dialog was cancelled");

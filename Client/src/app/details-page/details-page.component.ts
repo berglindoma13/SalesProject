@@ -93,6 +93,7 @@ export class DetailsPageComponent implements OnInit {
         price: result.price,
       };
       this.infoService.addProduct(newProduct, this.newProduct.id).subscribe(result => {
+        this.allProducts.push(result);
         console.log("adding successful");
       }, err => {
         console.log("Dialog was cancelled");
