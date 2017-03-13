@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.37% </span>
+        <span class="strong">16.39% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/49</span>
+        <span class='fraction'>10/61</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/15</span>
+        <span class='fraction'>0/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/48</span>
+        <span class='fraction'>9/60</span>
       </div>
     </div>
   </div>
@@ -163,7 +163,40 @@
 118
 119
 120
-121</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,6 +205,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -249,7 +283,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,6 +300,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,6 +358,7 @@ import {InfoServiceService} from '../info-service.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AddProductDialogComponent } from '../add-product-dialog/add-product-dialog.component'
+import {AddSellerDialogComponent} from "../add-seller-dialog/add-seller-dialog.component";
 &nbsp;
 @Component({
   selector: 'app-details-page',
@@ -366,9 +433,8 @@ export class DetailsPageComponent implements OnInit {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  addProduct</span>(){
     const instance = <span class="cstat-no" title="statement not covered" >this.modalService.open(AddProductDialogComponent);</span>
-<span class="cstat-no" title="statement not covered" >    instance.componentInstance.newProduct = {};</span>
+<span class="cstat-no" title="statement not covered" >    instance.componentInstance.product = {};</span>
 <span class="cstat-no" title="statement not covered" >    instance.result.then(<span class="fstat-no" title="function not covered" >result</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      console.log(result);</span>
       const newProduct = <span class="cstat-no" title="statement not covered" >{</span>
         id : this.seller.id + 1,
         quantitySold: result.quantitySold,
@@ -387,6 +453,39 @@ export class DetailsPageComponent implements OnInit {
     })
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    this.getTopTen();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  editSeller</span>(){
+    const instance = <span class="cstat-no" title="statement not covered" >this.modalService.open(AddSellerDialogComponent);</span>
+<span class="cstat-no" title="statement not covered" >    instance.componentInstance.seller = {};</span>
+<span class="cstat-no" title="statement not covered" >    instance.componentInstance.edit = true;</span>
+<span class="cstat-no" title="statement not covered" >    instance.result.then(<span class="fstat-no" title="function not covered" >result</span> =&gt; {</span>
+      const editedSeller = <span class="cstat-no" title="statement not covered" >{</span>
+        id : this.sellerId,
+        name : result.name,
+        category: result.category,
+        imagePath: result.imagePath
+      };
+<span class="cstat-no" title="statement not covered" >      this.infoService.editSeller(editedSeller).subscribe(<span class="fstat-no" title="function not covered" >result</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        this.seller = result;</span>
+      });
+    })
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  editProduct</span>(){
+    const instance = <span class="cstat-no" title="statement not covered" >this.modalService.open(AddProductDialogComponent);</span>
+<span class="cstat-no" title="statement not covered" >    instance.componentInstance.product = {};</span>
+<span class="cstat-no" title="statement not covered" >    instance.componentInstance.edit = true;</span>
+<span class="cstat-no" title="statement not covered" >    instance.result.then(<span class="fstat-no" title="function not covered" >result</span> =&gt; {</span>
+      const editedProduct = <span class="cstat-no" title="statement not covered" >{</span>
+        id : this.seller.id + 1,
+        quantitySold: result.quantitySold,
+        quantityInStock: result.quantityInStock,
+        imagePath: result.imagePath,
+        name: result.name,
+        price: result.price,
+      };
+    })
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  displayError</span>(message, error){
@@ -409,7 +508,7 @@ export class DetailsPageComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 13 2017 14:46:52 GMT+0000 (Greenwich Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 13 2017 20:25:41 GMT+0000 (Greenwich Standard Time)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

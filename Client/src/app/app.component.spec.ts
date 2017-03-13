@@ -7,28 +7,6 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 describe('AppComponent', () => {
 
-  const mockService = {
-    successGetProducts: true,
-    productList: [{
-      id: 2,
-      name: 'vara'
-    }],
-    getSellerProduct: function(id) {
-      return {
-        subscribe: function(fnSuccess, fnError) {
-          if (mockService.successGetProducts === true) {
-            fnSuccess(mockService.productList);
-          } else {
-            fnError();
-          }
-        }
-      }
-    }
-  };
-
-  const mockModal = {
-    open: jasmine.createSpy('open')
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -36,12 +14,6 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers : [{
-        provide: InfoServiceService,
-        useValue: mockService
-      }, {
-          provide: NgbModal,
-          useValue: mockModal
-      }, {
         provide: Router,
         useClass: class { navigate = jasmine.createSpy('navigate');}
       }],

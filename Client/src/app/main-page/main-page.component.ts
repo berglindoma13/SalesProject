@@ -39,7 +39,6 @@ export class MainPageComponent implements OnInit {
     const instance = this.modalService.open(AddSellerDialogComponent);
     instance.componentInstance.seller = {};
     instance.result.then(result => {
-      console.log(result);
       const newSeller = {
         id : this.sellers.length + 1,
         name : result.name,
@@ -48,9 +47,9 @@ export class MainPageComponent implements OnInit {
       };
       this.infoService.addSeller(newSeller).subscribe(result => {
         this.sellers.push(result);
-        console.log("adding successful");
+        this.displaySuccess("Adding seller was successful", "Success");
       }, err => {
-        console.log("Dialog was cancelled");
+        this.displayError("Error occured when adding seller", "Error");
       })
 
     })
@@ -58,6 +57,10 @@ export class MainPageComponent implements OnInit {
 
   displayError(message,error) {
     this.toaster.error(message, error);
+  }
+
+  displaySuccess(message,success){
+    this.toaster.success(message,success);
   }
 
 }
