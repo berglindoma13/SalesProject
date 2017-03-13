@@ -10,12 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddProductDialogComponent implements OnInit {
   private product: Product;
-
-  private newProductName: string;
-  private newProductQuantitySold : number;
-  private newProductQuantityInStock : number;
-  private newProductImagePath : string;
-  private newProductPrice : number;
+  edit: boolean;
 
   constructor(public activeModal: NgbActiveModal,
               private toaster: ToastrService) { }
@@ -28,12 +23,6 @@ export class AddProductDialogComponent implements OnInit {
   }
 
   onCreate(){
-    this.product.id = -1;
-    this.product.name = this.newProductName;
-    this.product.imagePath = this.newProductImagePath;
-    this.product.quantitySold = this.newProductQuantitySold;
-    this.product.price = this.newProductPrice;
-    this.product.quantityInStock = this.newProductQuantityInStock;
 
     this.activeModal.close(this.product);
   }

@@ -1,13 +1,14 @@
 <div class="modal-header">
-  <h4 class="modal-title">Add Seller</h4>
+  <h4 class="modal-title" *ngIf="!edit">Add Seller</h4>
+  <h4 class="modal-title" *ngIf="edit">Edit Seller</h4>
   <button type="button" class="close" aria-label="Close" (click)="onCancel()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <input [(ngModel)]="newSellerName" placeholder="Seller name"><br>
-  <input [(ngModel)]="newSellerCategory" placeholder="Seller category"><br>
-  <input [(ngModel)]="newSellerImage" placeholder="Seller image">
+  <input [(ngModel)]="seller.name" placeholder="Seller name"><br>
+  <input [(ngModel)]="seller.category" placeholder="Seller category"><br>
+  <input [(ngModel)]="seller.imagePath" placeholder="Seller image">
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="onCancel()">Close</button>

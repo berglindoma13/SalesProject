@@ -1,15 +1,16 @@
 <div class="modal-header">
-  <h4 class="modal-title">Add Product</h4>
+  <h4 class="modal-title" *ngIf="!edit">Add Product</h4>
+  <h4 class="modal-title" *ngIf="edit">Edit Product</h4>
   <button type="button" class="close" aria-label="Close" (click)="onCancel()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <input [(ngModel)]="newProductName" placeholder="Product name">
-  <input [(ngModel)]="newProductPrice" placeholder="Product price">
-  <input [(ngModel)]="newProductQuantityInStock" placeholder="Quantity in stock">
-  <input [(ngModel)]="newProductQuantitySold" placeholder="Quantity sold">
-  <input [(ngModel)]="newProductImagePath" placeholder="Image Path">
+  <input [(ngModel)]="product.name" placeholder="Product name">
+  <input [(ngModel)]="product.price" placeholder="Product price">
+  <input [(ngModel)]="product.quantityInStock" placeholder="Quantity in stock">
+  <input [(ngModel)]="product.quantitySold" placeholder="Quantity sold">
+  <input [(ngModel)]="product.imagePath" placeholder="Image Path">
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="onCancel()">Close</button>
