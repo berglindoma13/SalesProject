@@ -17,16 +17,37 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
   </div>
-</--template-->
+</template-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-offset-3 col-md-3 col-md-offset-3">
+      <h1>Sellers</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-offset-6 col-md-3 col-md-offset-8">
+      <button class="btn btn-lg btn-outline-primary" (click)="addSeller()">Add Seller</button>
+    </div>
+  </div>
+  <div class="row custom-margin">
+    <div class=" col-md-6 col-md-offset-3">
+      <table class="table table-hover table-striped table-bordered">
+        <thead>
+        <tr>
+          <th>Seller</th>
+          <th>Main Product</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let seller of sellers" (click)="DetailsPage(seller.id)">
+          <td>{{seller.name}}</td>
+          <td>{{seller.category}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <template ngbModalContainer>
 
-<h1>Seller List </h1>
-
-<ul>
-  <li *ngFor="let seller of sellers">
-    <a class="navbar-link active" (click)="DetailsPage(seller.id)">Seller: {{seller.name}}, Main Product: {{seller.category}} </a>
-  </li>
-</ul>
-
-<button class="btn btn-lg btn-outline-primary" (click)="addSeller()">Add Seller</button>
-<template ngbModalContainer></template>
-
+    </template>
+  </div>
+</div>
