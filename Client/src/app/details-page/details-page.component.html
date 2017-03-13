@@ -5,6 +5,7 @@
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
             <p> Seller: {{seller.name}} <br> Category: {{seller.category}}</p>
+            <button (click)="editSeller()">Edit Seller</button>
         </div>
     </div>
 </div>
@@ -21,7 +22,7 @@
               <h2 id="allproducts" >All Products</h2>
                 <div id="product" *ngFor="let product of allProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div id="productInCenter">
-                      <a (click)="editProduct()">
+                      <a (click)="editProduct(product.id)">
                         <img src={{product.imagePath}}>
                       </a>
                         <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
