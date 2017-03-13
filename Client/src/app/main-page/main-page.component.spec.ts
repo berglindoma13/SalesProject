@@ -55,11 +55,17 @@ describe('MainPageComponent', () => {
   };
 
   const mockModal = {
+    pressedOK : true,
     open: function(){
       return {
         result: {
-          then: function(fn){
-            fn();
+          then: function(fnSuccess, fnError){
+            if(mockModal.pressedOK === true){
+              fnSuccess();
+            }
+            else{
+              fnError();
+            }
           }
         }
       }

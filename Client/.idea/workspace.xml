@@ -92,8 +92,8 @@
           <file leaf-file-name="details-page.component.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/app/details-page/details-page.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1038">
-                  <caret line="148" column="1" lean-forward="true" selection-start-line="148" selection-start-column="1" selection-end-line="150" selection-end-column="3" />
+                <state relative-caret-position="2728">
+                  <caret line="143" column="26" lean-forward="false" selection-start-line="143" selection-start-column="26" selection-end-line="143" selection-end-column="26" />
                   <folding>
                     <element signature="e#0#58#0" expanded="true" />
                   </folding>
@@ -127,24 +127,34 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main-page.component.spec.ts" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main-page.component.spec.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/app/main-page/main-page.component.spec.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+                <state relative-caret-position="-396">
+                  <caret line="66" column="24" lean-forward="false" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="details-page.component.spec.ts" pinned="false" current-in-tab="false">
+          <file leaf-file-name="details-page.component.spec.ts" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/app/details-page/details-page.component.spec.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="466">
-                  <caret line="57" column="19" lean-forward="false" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
+                <state relative-caret-position="-1162">
+                  <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#73#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="tsconfig.app.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/tsconfig.app.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="484">
+                  <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -180,9 +190,9 @@
         <option value="$PROJECT_DIR$/src/app/app.component.spec.ts" />
         <option value="$PROJECT_DIR$/src/app/details-page/details-page.component.ts" />
         <option value="$PROJECT_DIR$/../Server/index.js" />
-        <option value="$PROJECT_DIR$/src/app/details-page/details-page.component.spec.ts" />
         <option value="$PROJECT_DIR$/src/app/main-page/main-page.component.ts" />
         <option value="$PROJECT_DIR$/src/app/main-page/main-page.component.spec.ts" />
+        <option value="$PROJECT_DIR$/src/app/details-page/details-page.component.spec.ts" />
       </list>
     </option>
   </component>
@@ -319,7 +329,7 @@
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="fade&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Berglind/OneDrive/Documents/Vefforitun2/sales-project/Client/src/app/main-page/main-page.component.ts&#10;fade&#9;null&#9;null" />
     <property name="editor.config.accepted" value="true" />
   </component>
   <component name="RunManager">
@@ -400,12 +410,12 @@
       <workItem from="1488672278860" duration="17742000" />
       <workItem from="1489090752363" duration="12485000" />
       <workItem from="1489398206752" duration="12044000" />
-      <workItem from="1489416348602" duration="11620000" />
+      <workItem from="1489416348602" duration="13219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54912000" />
+    <option name="totallyTimeSpent" value="56511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2391" y="-9" width="2418" height="1468" extended-state="6" />
@@ -444,16 +454,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/main-page/main-page.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/product.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -829,20 +829,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/details-page/details-page.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="57" column="19" lean-forward="false" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/details-page/details-page.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1038">
-          <caret line="148" column="1" lean-forward="true" selection-start-line="148" selection-start-column="1" selection-end-line="150" selection-end-column="3" />
+        <state relative-caret-position="2728">
+          <caret line="143" column="26" lean-forward="false" selection-start-line="143" selection-start-column="26" selection-end-line="143" selection-end-column="26" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
@@ -859,11 +849,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tsconfig.app.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/main-page/main-page.component.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="68" column="8" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+        <state relative-caret-position="-396">
+          <caret line="66" column="24" lean-forward="false" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/details-page/details-page.component.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1162">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

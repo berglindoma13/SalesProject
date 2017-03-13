@@ -5,6 +5,7 @@ import {Router, Route, ActivatedRoute} from "@angular/router";
 import {InfoServiceService} from "../info-service.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastrService} from "ngx-toastr";
+import {BehaviorSubject} from "rxjs";
 
 
 /**
@@ -14,8 +15,27 @@ import {ToastrService} from "ngx-toastr";
  * it should add the new seller to the list if the new seller could be added
  * it should display an error message if the seller could not be added
  */
-describe('DetailsPageComponent', () => {
 
+export class ActivatedRouteStub {
+  // ActivatedRoute.params is Observable
+  private subject = new BehaviorSubject(this.testParams);
+  params = this.subject.asObservable();
+
+  // Test parameters
+  private _testParams: {};
+  get testParams() { return this._testParams; }
+  set testParams(params: {}) {
+    this._testParams = params;
+    this.subject.next(params);
+  }
+  // ActivatedRoute.snapshot.params
+  get snapshot() {
+    return { params: this.testParams };
+  }
+}
+
+describe('DetailsPageComponent', () => {
+  const activatedRoute = new ActivatedRouteStub();
   const mockService = {
     successGetSeller: true,
     sellerId : 1,
@@ -81,9 +101,6 @@ describe('DetailsPageComponent', () => {
         provide: Router,
         useValue: mockRouter
       },{
-        provide: ActivatedRoute,
-        useValue: mockRoute
-      },{
         provide: InfoServiceService,
         useValue: mockService
       },{
@@ -92,6 +109,9 @@ describe('DetailsPageComponent', () => {
       },{
         provide: ToastrService,
         useValue: mockToastr
+      },{
+        provide: ActivatedRoute,
+        useValue: activatedRoute
       }],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
@@ -101,10 +121,20 @@ describe('DetailsPageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DetailsPageComponent);
     component = fixture.componentInstance;
+    activatedRoute.testParams = {
+      id: 1
+    };
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });
+
+/*
+ ,{
+ provide: ActivatedRoute,
+ useValue: mockRoute
+ }
+ */
