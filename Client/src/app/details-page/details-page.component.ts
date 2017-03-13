@@ -19,7 +19,7 @@ import {AddSellerDialogComponent} from "../add-seller-dialog/add-seller-dialog.c
 export class DetailsPageComponent implements OnInit {
   sellerId: number;
   seller: Salesperson;
-  allProducts: Product[];
+  public allProducts: Product[];
   topTenProducts: Product[];
 
   newProduct: Product;
@@ -77,12 +77,11 @@ export class DetailsPageComponent implements OnInit {
       return 1;
     }
     return 0;
-
   }
 
   addProduct(){
     const instance = this.modalService.open(AddProductDialogComponent);
-    instance.componentInstance.product = {};
+    instance.componentInstance.product = {}; //Vesen á þessum af því við erum að skila promise
     instance.result.then(result => {
       const newProduct = {
         id : this.seller.id + 1,

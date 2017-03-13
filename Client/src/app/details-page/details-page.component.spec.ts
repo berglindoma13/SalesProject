@@ -6,6 +6,7 @@ import {InfoServiceService} from "../info-service.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastrService} from "ngx-toastr";
 import {BehaviorSubject} from "rxjs";
+import {Observable} from 'rxjs/Observable';
 
 
 /**
@@ -28,6 +29,13 @@ export class ActivatedRouteStub {
     this._testParams = params;
     this.subject.next(params);
   }
+  private product = {
+      quantitySold: 20,
+      quantityInStock: 30,
+      imagePath: "https://i.ytimg.com/i/-9-kyTW8ZkZNDHQJ6FgpwQ/1.jpg",
+      name: "result.name",
+      price: 4000,
+  };
   // ActivatedRoute.snapshot.params
   get snapshot() {
     return { params: this.testParams };
@@ -63,7 +71,15 @@ describe('DetailsPageComponent', () => {
 
         }
       }
-    }
+    },
+    addProduct : jasmine.createSpy("addProduct").and.returnValue(
+      Observable.create((observer)=>{
+         observer.onNext(this.product);
+         observer.onCompleted();
+      })
+    ) 
+
+
   };
 
   const mockRouter = {
@@ -88,7 +104,10 @@ describe('DetailsPageComponent', () => {
   };
 
   const mockModal = {
-    open: jasmine.createSpy("open")
+    open: jasmine.createSpy("open").and.returnValue({
+      result: Promise.resolve(this.product),
+      componentInstance: { }
+    })
   };
 
   let component: DetailsPageComponent;
@@ -130,6 +149,44 @@ describe('DetailsPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should addProduct  ', () => {
+    component.seller = { 
+      id : 5,
+      name : "peple",
+      category : "Whaaa",
+      imagePath : "Nei what?"
+    }
+    
+    component.addProduct();
+
+    //expect(component.allProducts.length).toEqual(1); //Skilar undefined
+    expect(mockModal.open).toHaveBeenCalled();
+    //expect(mockService.addProduct).toHaveBeenCalled();
+  });
+
+  it('should getTopTen with 112 products', () =>{
+
+    const topTenProducts = [];
+    for(let i = 0; i < 112; i++){
+      topTenProducts.push({
+        id: i,
+        quantitySold: Math.random()*20,
+        quantityInStock: Math.random()*20,
+        imagePath: "http://wwww.placehold.it/200x300/",
+        name: "namer" + i,
+        price: Math.random()*400,
+      })
+    }
+    component.allProducts = topTenProducts;
+
+    component.getTopTen();
+
+    expect(component.topTenProducts.length).toEqual(10);
+    expect(component.noProducts).toBeFalsy();
+
+
+  })
 });
 
 /*
