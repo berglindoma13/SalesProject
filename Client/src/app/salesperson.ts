@@ -3,5 +3,4 @@ export interface Salesperson {
   name: string;
   category: string;
   imagePath : string;
-  //add imagepath
 }

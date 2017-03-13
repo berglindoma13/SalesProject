@@ -12,11 +12,13 @@
 
 
 <body>
+  <button class="btn btn-lg btn-outline-primary" id="addbutton" (click)="addProduct()">Add Product</button>
+
     <ngb-tabset>
         <ngb-tab title="All Products">
             <template ngbTabContent>
-            <div id="products" class="row">
-                <p>All Products</p>
+            <div *ngIf="!noProducts" id="products" class="row">
+              <h2 id="allproducts" >All Products</h2>
                 <div id="product" *ngFor="let product of allProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div id="productInCenter">
                         <img src={{product.imagePath}}>
@@ -24,22 +26,32 @@
                     </div>
                 </div>
             </div>
+              <div *ngIf="noProducts">
+                <p>This seller has no products!</p>
+              </div>
             </template>
         </ngb-tab>
+
         <ngb-tab title="Top Ten Products" (tabChange)="getTopTen()">
             <template ngbTabContent>
-              <div id="topten" *ngFor="let product of topTenProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div id="toptenInCenter">
-                  <img src={{product.imagePath}}>
-                  <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
+              <div *ngIf="!noProducts"  id="topTenProducts" class="row">
+                <h2 id="alltopproducts">Top 10 Products</h2>
+                <div id="topten" *ngFor="let product of topTenProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                  <div id="toptenInCenter">
+                    <img src={{product.imagePath}}>
+                    <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
+                  </div>
                 </div>
+              </div>
+
+              <div *ngIf="noProducts">
+                <p>This seller has no products!</p>
               </div>
             </template>
         </ngb-tab>
     </ngb-tabset>
 
 
-    <button class="btn btn-lg btn-outline-primary" (click)="addProduct()">Add Product</button>
 
     <template ngbModalContainer>
 

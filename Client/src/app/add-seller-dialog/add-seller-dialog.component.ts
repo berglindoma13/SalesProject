@@ -11,6 +11,10 @@ import { ToastrService } from 'ngx-toastr';
 export class AddSellerDialogComponent{
   private seller : Salesperson;
 
+  private newSellerName: string;
+  private newSellerCategory: string;
+  private newSellerImage: string;
+
   constructor( public activeModal: NgbActiveModal,
                private toaster: ToastrService ) {
     console.log("inside add seller");
@@ -22,6 +26,11 @@ export class AddSellerDialogComponent{
   }
 
   onCreate(){
+    this.seller.id = -1;
+    this.seller.category = this.newSellerCategory;
+    this.seller.name = this.newSellerName;
+    this.seller.imagePath = this.newSellerImage;
+
     this.activeModal.close(this.seller);
   }
 }

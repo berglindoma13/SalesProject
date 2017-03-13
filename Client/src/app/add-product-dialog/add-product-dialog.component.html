@@ -1,16 +1,15 @@
 <div class="modal-header">
-  <h4 class="modal-title">Hi there!</h4>
+  <h4 class="modal-title">Add Product</h4>
   <button type="button" class="close" aria-label="Close" (click)="onCancel()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <!--<form [formGroup]="addProductForm" (ngSubmit)="onNewProduct($event)">
-    <input formControlName="name" type="name" placeholder="Product name">
-    <input formControlName="price" type="price" placeholder="Product price">
-    <input formControlName="imagePath" type="imagePath" placeholder="Product image">
-    <button type="submit">Add Product</button>
-  </form>-->
+  <input [(ngModel)]="newProductName" placeholder="Product name">
+  <input [(ngModel)]="newProductPrice" placeholder="Product price">
+  <input [(ngModel)]="newProductQuantityInStock" placeholder="Quantity in stock">
+  <input [(ngModel)]="newProductQuantitySold" placeholder="Quantity sold">
+  <input [(ngModel)]="newProductImagePath" placeholder="Image Path">
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="onCancel()">Close</button>

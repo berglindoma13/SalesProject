@@ -1,18 +1,13 @@
-<!--This needs to be in a dialog-->
-<!--form [formGroup]="addSellerForm" (ngSubmit)="onNewSeller($event)">
-  <input formControlName="name" type="name" placeholder="Seller name">
-  <input formControlName="category" type="category" placeholder="Seller category">
-  <input formControlName="imagePath" type="imagePath" placeholder="Seller image">
-  <button type="submit">Add seller</button>
-</form-->
 <div class="modal-header">
-  <h4 class="modal-title">Hi there!</h4>
+  <h4 class="modal-title">Add Seller</h4>
   <button type="button" class="close" aria-label="Close" (click)="onCancel()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <p>Seller name: </p>
+  <input [(ngModel)]="newSellerName" placeholder="Seller name"><br>
+  <input [(ngModel)]="newSellerCategory" placeholder="Seller category"><br>
+  <input [(ngModel)]="newSellerImage" placeholder="Seller image">
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="onCancel()">Close</button>

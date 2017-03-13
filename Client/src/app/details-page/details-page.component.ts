@@ -23,18 +23,9 @@ export class DetailsPageComponent implements OnInit {
 
   newProduct: Product;
 
-  private addProductForm = this.fb.group({
-    id: [0],
-    quantitySold: [0],
-    quantityInStock: [0],
-    imagePath: [""],
-    name: [""],
-    price: []
-  });
+  noProducts : boolean;
 
-
-  constructor(private fb: FormBuilder,
-              private router: Router,
+  constructor(private router: Router,
               private route: ActivatedRoute,
               private infoService: InfoServiceService,
               private modalService: NgbModal,
@@ -66,12 +57,14 @@ export class DetailsPageComponent implements OnInit {
     this.topTenProducts = [];
     for (const i in this.allProducts) {
       this.topTenProducts.push(this.allProducts[i]);
+      this.noProducts = false;
     }
     this.topTenProducts.sort(this.compare);
     this.topTenProducts = this.topTenProducts.slice(0, 10);
 
     if(this.topTenProducts.length == 0){
-      this.displayInfo("This seller has no top ten products", "Sorry")
+      //this.displayInfo("This seller has no top ten products", "Sorry")
+      this.noProducts = true;
     }
   }
 
@@ -106,12 +99,7 @@ export class DetailsPageComponent implements OnInit {
       })
 
     })
-  }
-  onNewProduct(event) {
-    this.newProduct = this.addProductForm.value;
-    this.infoService.addProduct(this.newProduct, this.sellerId).subscribe(result => {
-      this.allProducts.push(result);
-    });
+
     this.getTopTen();
   }
 

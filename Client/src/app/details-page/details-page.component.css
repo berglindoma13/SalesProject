@@ -34,3 +34,21 @@ body img {
 body figcaption {
     text-align: center;
 }
+
+#addbutton{
+  position: relative;
+  left: 990px;
+  bottom: 390px;
+}
+
+#allproducts{
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+#alltopproducts{
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
