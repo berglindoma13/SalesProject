@@ -12,13 +12,15 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
 import { InfoServiceService } from './info-service.service';
 import { AddSellerDialogComponent } from './add-seller-dialog/add-seller-dialog.component';
+import { AddProductDialogComponent } from './add-product-dialog/add-product-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     DetailsPageComponent,
-    AddSellerDialogComponent
+    AddSellerDialogComponent,
+    AddProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,6 @@ import { AddSellerDialogComponent } from './add-seller-dialog/add-seller-dialog.
   ],
   providers: [InfoServiceService],
   bootstrap: [AppComponent],
-    entryComponents: [AddSellerDialogComponent]
+    entryComponents: [AddSellerDialogComponent, AddProductDialogComponent]
 })
 export class AppModule { }

@@ -39,7 +39,7 @@ export class MainPageComponent implements OnInit {
     const instance = this.modalService.open(AddSellerDialogComponent);
     instance.componentInstance.seller = {};
     instance.result.then(result => {
-      console.log("dialog closed with OK");
+      console.log(result);
       const newSeller = {
         id : this.sellers.length + 1,
         name : result.name,
