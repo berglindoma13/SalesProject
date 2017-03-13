@@ -8,7 +8,7 @@
 */node_modules
 
 # IDEs and editors
-/.idea
+Client/.idea
 .project
 .classpath
 .c9/
@@ -27,6 +27,7 @@
 /.sass-cache
 /connect.lock
 /coverage/*
+Client/coverage/*
 /libpeerconnection.log
 npm-debug.log
 testem.log
