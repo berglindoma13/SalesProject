@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, NgModule} from '@angular/core';
 import {Router, ActivatedRoute} from "@angular/router";
 import {Salesperson} from '../salesperson';
 import {Product} from '../product';
@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './details-page.component.html',
   styleUrls: ['./details-page.component.css']
 })
+
+
 export class DetailsPageComponent implements OnInit {
 
   sellerId: number;

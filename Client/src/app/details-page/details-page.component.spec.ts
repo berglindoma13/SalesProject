@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DetailsPageComponent } from './details-page.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('DetailsPageComponent', () => {
   let component: DetailsPageComponent;

@@ -8,5 +8,5 @@ import { AddSellerDialogComponent } from './add-seller-dialog/add-seller-dialog.
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Skilaverkefni 3';
 }

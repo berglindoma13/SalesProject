@@ -28,8 +28,7 @@ describe('MainPageComponent', () => {
   };
 
   const mockModal = {
-        open: jasmine.createSpy("open");
-
+        open: jasmine.createSpy("open")
   }
 
   let component: MainPageComponent;
@@ -59,7 +58,7 @@ describe('MainPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe("when info service returns empty list of products", () =>{
+  describe("when info service returns empty list of sellers", () =>{
       mockService.successGetSellers = true;
       mockService.sellerList = [];
 
