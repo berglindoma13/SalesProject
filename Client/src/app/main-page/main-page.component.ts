@@ -12,8 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  private sellers : Salesperson[];
-  closeResult : string;
+  sellers : Salesperson[];
 
   constructor(private infoService : InfoServiceService,
               private modalService: NgbModal,
@@ -35,7 +34,6 @@ export class MainPageComponent implements OnInit {
   }
 
   addSeller(){
-    console.log("opening add seller module");
     const instance = this.modalService.open(AddSellerDialogComponent);
     instance.componentInstance.seller = {};
     instance.result.then(result => {
