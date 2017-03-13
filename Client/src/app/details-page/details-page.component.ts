@@ -7,6 +7,7 @@ import {InfoServiceService} from '../info-service.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AddProductDialogComponent } from '../add-product-dialog/add-product-dialog.component'
+import {AddSellerDialogComponent} from "../add-seller-dialog/add-seller-dialog.component";
 
 @Component({
   selector: 'app-details-page',
@@ -81,9 +82,8 @@ export class DetailsPageComponent implements OnInit {
 
   addProduct(){
     const instance = this.modalService.open(AddProductDialogComponent);
-    instance.componentInstance.newProduct = {};
+    instance.componentInstance.product = {};
     instance.result.then(result => {
-      console.log(result);
       const newProduct = {
         id : this.seller.id + 1,
         quantitySold: result.quantitySold,
@@ -102,6 +102,39 @@ export class DetailsPageComponent implements OnInit {
     })
 
     this.getTopTen();
+  }
+
+  editSeller(){
+    const instance = this.modalService.open(AddSellerDialogComponent);
+    instance.componentInstance.seller = {};
+    instance.componentInstance.edit = true;
+    instance.result.then(result => {
+      const editedSeller = {
+        id : this.sellerId,
+        name : result.name,
+        category: result.category,
+        imagePath: result.imagePath
+      };
+      this.infoService.editSeller(editedSeller).subscribe(result => {
+        this.seller = result;
+      });
+    })
+  }
+
+  editProduct(){
+    const instance = this.modalService.open(AddProductDialogComponent);
+    instance.componentInstance.product = {};
+    instance.componentInstance.edit = true;
+    instance.result.then(result => {
+      const editedProduct = {
+        id : this.seller.id + 1,
+        quantitySold: result.quantitySold,
+        quantityInStock: result.quantityInStock,
+        imagePath: result.imagePath,
+        name: result.name,
+        price: result.price,
+      };
+    })
   }
 
   displayError(message, error){
