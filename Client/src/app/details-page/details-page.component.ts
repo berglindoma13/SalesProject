@@ -2,9 +2,11 @@ import {Component, OnInit, NgModule} from '@angular/core';
 import {Router, ActivatedRoute} from "@angular/router";
 import {Salesperson} from '../salesperson';
 import {Product} from '../product';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {InfoServiceService} from '../info-service.service';
 import {FormBuilder, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AddProductDialogComponent } from '../add-product-dialog/add-product-dialog.component'
 
 @Component({
   selector: 'app-details-page',
@@ -14,7 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 
 
 export class DetailsPageComponent implements OnInit {
-
   sellerId: number;
   seller: Salesperson;
   allProducts: Product[];
@@ -36,6 +37,7 @@ export class DetailsPageComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private infoService: InfoServiceService,
+              private modalService: NgbModal,
               private toastr: ToastrService) {
   }
 
@@ -84,6 +86,27 @@ export class DetailsPageComponent implements OnInit {
 
   }
 
+  addProduct(){
+    const instance = this.modalService.open(AddProductDialogComponent);
+    instance.componentInstance.newProduct = {};
+    instance.result.then(result => {
+      console.log(result);
+      const newProduct = {
+        id : this.seller.id + 1,
+        quantitySold: result.quantitySold,
+        quantityInStock: result.quantityInStock,
+        imagePath: result.imagePath,
+        name: result.name,
+        price: result.price,
+      };
+      this.infoService.addProduct(newProduct, this.newProduct.id).subscribe(result => {
+        console.log("adding successful");
+      }, err => {
+        console.log("Dialog was cancelled");
+      })
+
+    })
+  }
   onNewProduct(event) {
     this.newProduct = this.addProductForm.value;
     this.infoService.addProduct(this.newProduct, this.sellerId).subscribe(result => {
