@@ -37,7 +37,7 @@ describe('InfoServiceService', () => {
   }));
 
 
-  it('should get profile data of user', (done) => {
+  /*it('should get profile data of user', (done) => {
     let profileInfo = { id: 1, name: 'Tester', category: 'Föt', imagePath: 'https://www.w3schools.com/css/img_fjords.jpg'};
     backend.connections.subscribe((connection: MockConnection) => {
       let options = new ResponseOptions({ body: profileInfo });
@@ -50,7 +50,7 @@ describe('InfoServiceService', () => {
       done();
     });
   });
-
+*/
 
 
 });
@@ -120,4 +120,4 @@ describe('InfoServiceService', () => {
       });
     });
   });
-
+*/

@@ -6,6 +6,8 @@ import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {fn} from "@angular/compiler/src/output/output_ast";
+import {Observable} from "rxjs";
+
 
 
 /** it should display a list of sellers if the backend returns a list
@@ -28,49 +30,25 @@ describe('MainPageComponent', () => {
         category: "annad",
         imagePath: ""
       },
-      getAllSellers: function() {
-          return {
-              subscribe: function(fnSuccess, fnError){
-                  if(mockService.successGetSellers === true){
-                    fnSuccess(mockService.sellerList);
-                  }
-                  else{
-                      fnError();
-                  }
-              }
-          }
-      },
-      addSeller: function(AddedSeller) {
-        return {
-          subscribe: function(fnSuccess, fnError){
-            if(mockService.successAddSellers === true){
-              fnSuccess(mockService.AddedSeller);
-            }
-            else{
-              fnError();
-            }
-          }
-        }
-      }
-
+      getAllSellers: jasmine.createSpy("getAllSellers").and.returnValue(
+        Observable.create((observer => {
+          observer.onNext(this.sellerList);
+          observer.onCompleted();
+        })
+      )),
+      addSeller: jasmine.createSpy("addSeller").and.returnValue(
+        Observable.create((observer)=>{
+          observer.onNext(this.AddedSeller);
+          observer.onCompleted();
+        })
+      )
   };
 
   const mockModal = {
-    pressedOK : true,
-    open: function(){
-      return {
-        result: {
-          then: function(fnSuccess, fnError){
-            if(mockModal.pressedOK === true){
-              mockService.addSeller(mockService.AddedSeller);
-            }
-            else{
-              fnError();
-            }
-          }
-        }
-      }
-    }
+    open: jasmine.createSpy("open").and.returnValue({
+      result: Promise.resolve(this.product),
+      componentInstance: { }
+    })
   };
 
   //DONE
@@ -118,47 +96,23 @@ describe('MainPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should add a new seller", () => {
-    mockService.successAddSellers = true;
-    mockModal.pressedOK = true;
-    //component.addSeller();
-    //NOT DONE
-    //EXPECT SOMETHING
-  });
+  /*it("should add a new seller", () => {
+    component.addSeller();
+    expect(mockModal.open).toHaveBeenCalled();
+  });*/
 
-  describe("Requesting a list from service", () => {
+  it("it should display a list of sellers if the backend returns a list", ()=>{
     mockService.successGetSellers = true;
     mockService.sellerList = [];
-
-    it("it should display a list of sellers if the backend returns a list", ()=>{
-      mockService.getAllSellers();
-      //NOT DONE
-      //EXPECT SOMETHING
-    });
-
-    mockService.successGetSellers = false;
-    mockService.sellerList = [];
-
-    it("should display a message indicating that no products are to be displayed", () => {
-
-      //NOT DONE
-      //EXPECT SOMETHING
-    });
+    fixture.detectChanges();
+    expect(component.sellers.length).toEqual(1);
   });
 
-  describe("opening a modal", () => {
-    mockModal.pressedOK = true;
-    it("should display a toastr message successful", () => {
-      //NOT DONE
-      //TOASTR MESSAGE SUCCESSFUL
-    });
-
-    mockModal.pressedOK = false;
-    it("should not display a toastr message successful", () => {
-      //NOT DONE
-      //TOASTR MESSAGE ERROR
-    });
-
+  it("should display a message indicating that no products are to be displayed", () => {
+    mockService.successGetSellers = false;
+    mockService.sellerList = [];
+    //NOT DONE
+    //EXPECT SOMETHING
   });
 
   it("should navigate to a new page", () => {

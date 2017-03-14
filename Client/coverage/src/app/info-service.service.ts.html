@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36.36% </span>
+        <span class="strong">27.27% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/22</span>
+        <span class='fraction'>6/22</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.5% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/16</span>
+        <span class='fraction'>0/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">23.81% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/21</span>
+        <span class='fraction'>5/21</span>
       </div>
     </div>
   </div>
@@ -104,7 +104,8 @@
 59
 60
 61
-62</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+62
+63</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -114,7 +115,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,12 +133,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,7 +157,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,7 +177,7 @@ import "rxjs/rx";
 @Injectable()
 export class InfoServiceService {
 &nbsp;
-  constructor(private http: Http) { }
+<span class="fstat-no" title="function not covered" >  constructor(private <span class="cstat-no" title="statement not covered" ></span>http: Http)</span> { }
 &nbsp;
 &nbsp;
 <span class="fstat-no" title="function not covered" >  getAllSellers</span>() : Observable&lt;Salesperson[]&gt; {
@@ -193,7 +195,8 @@ export class InfoServiceService {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  addSeller</span>(newSeller : Salesperson) : Observable&lt;Salesperson&gt; {
 <span class="cstat-no" title="statement not covered" >      return this.http.post("http://localhost:5000/api/sellers", newSeller).map(</span>
-<span class="fstat-no" title="function not covered" >          response</span> =&gt; { <span class="cstat-no" title="statement not covered" >return &lt;Salesperson&gt; response.json()</span>
+<span class="fstat-no" title="function not covered" >          response</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >              return &lt;Salesperson&gt; response.json()</span>
           });
   }
 &nbsp;
@@ -211,18 +214,18 @@ export class InfoServiceService {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  editSeller</span>(editedSeller : Salesperson) : Observable&lt;Salesperson&gt; {
 <span class="cstat-no" title="statement not covered" >      return this.http.put(`http://localhost:5000/api/sellers/${editedSeller.id}`, editedSeller).map( <span class="fstat-no" title="function not covered" >response</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          return &lt;Salesperson&gt; response.json()</span>
+<span class="cstat-no" title="statement not covered" >          return &lt;Salesperson&gt; response.json();</span>
       });
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  editProduct</span>(productId : number, sellerId : number, editedProduct : Product) : Observable &lt;Product&gt; {
-<span class="cstat-no" title="statement not covered" >      return this.http.put(`http://localhost:5000/api/sellers/${sellerId}/products/${productId}`, editedProduct).map( <span class="fstat-no" title="function not covered" >response</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          return &lt;Product&gt; response.json()</span>
+<span class="fstat-no" title="function not covered" >  editProduct</span>(sellerId : number, editedProduct : Product) : Observable &lt;Product&gt; {
+<span class="cstat-no" title="statement not covered" >      return this.http.put(`http://localhost:5000/api/sellers/${sellerId}/products/${editedProduct.id}`, editedProduct).map( <span class="fstat-no" title="function not covered" >response</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            return &lt;Product&gt; response.json();</span>
       });
   }
 &nbsp;
-  testingUnitTests(){
-    return 1;
+<span class="fstat-no" title="function not covered" >  testingUnitTests</span>(){
+<span class="cstat-no" title="statement not covered" >    return 1;</span>
   }
 &nbsp;
 }
@@ -232,7 +235,7 @@ export class InfoServiceService {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 13 2017 21:54:03 GMT+0000 (Greenwich Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Mar 14 2017 15:53:04 GMT+0000 (Greenwich Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
