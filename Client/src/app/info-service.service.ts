@@ -49,9 +49,9 @@ export class InfoServiceService {
       });
   }
 
-  editProduct(sellerId : number, editedProduct : Product) : Observable <Product> {
+  editProduct(sellerId : number, editedProduct : Product) : Observable <{id: number, product: Product}> {
       return this.http.put(`http://localhost:5000/api/sellers/${sellerId}/products/${editedProduct.id}`, editedProduct).map( response => {
-            return <Product> response.json();
+            return <{id: number, product: Product}> response.json();
       });
   }
 

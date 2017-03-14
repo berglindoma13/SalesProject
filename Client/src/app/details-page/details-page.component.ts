@@ -97,6 +97,9 @@ export class DetailsPageComponent implements OnInit {
       }, err => {
         this.displayError("Product could not be added", err);
       })
+    })
+    .catch((error)=>{
+      
     });
     this.getTopTen();
   }
@@ -116,15 +119,26 @@ export class DetailsPageComponent implements OnInit {
         this.seller = result;
       });
     })
+    .catch((error)=>{
+      
+    });
   }
 
-  editProduct(productId: number){
+  editProduct(product: Product){
     const instance = this.modalService.open(AddProductDialogComponent);
-    instance.componentInstance.product = {};
+    //Sendir inn gögnin á 
+    instance.componentInstance.product = {
+      id: product.id,
+      quantitySold: product.quantitySold,
+      quantityInStock: product.quantityInStock,
+      imagePath: product.imagePath,
+      name: product.name,
+      price: product.price
+    };
     instance.componentInstance.edit = true;
     instance.result.then(result => {
       const editedProduct = {
-        id : productId,
+        id : product.id,
         quantitySold: result.quantitySold,
         quantityInStock: result.quantityInStock,
         imagePath: result.imagePath,
@@ -132,9 +146,16 @@ export class DetailsPageComponent implements OnInit {
         price: result.price,
       };
       this.infoService.editProduct(this.sellerId, editedProduct).subscribe(result => {
-
+        console.log(result);
+        product.name = result.product.name;
+        product.quantityInStock =result.product.quantityInStock;
+        product.quantitySold = result.product.quantitySold;
+        product.imagePath = result.product.imagePath;
+        product.price = result.product.price;
       })
     })
+    .catch((error)=>{
+    });
   }
 
   displayError(message, error){
