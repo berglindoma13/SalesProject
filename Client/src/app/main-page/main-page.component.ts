@@ -36,7 +36,14 @@ export class MainPageComponent implements OnInit {
   addSeller(){
     const instance = this.modalService.open(AddSellerDialogComponent);
     instance.componentInstance.seller = {};
-    instance.result.then(result => {
+    instance.result.then((result: Salesperson) => {
+      if(result.name.length === 0 ||
+      result.category.length === 0 ||
+      result.imagePath.length === 0  
+      ){
+        this.toaster.error("Make sure every text field contains text", "error");
+        return;
+      }
       const newSeller = {
         id : this.sellers.length + 1,
         name : result.name,
@@ -49,7 +56,6 @@ export class MainPageComponent implements OnInit {
       }, err => {
         this.displayError("Error occured when adding seller", "Error");
       })
-
     })
   }
 

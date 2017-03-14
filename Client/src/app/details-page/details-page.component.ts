@@ -83,6 +83,9 @@ export class DetailsPageComponent implements OnInit {
     const instance = this.modalService.open(AddProductDialogComponent);
     instance.componentInstance.product = {};
     instance.result.then(result => {
+      if(this.invalid(result)){
+        return;
+      }
       const newProduct = {
         id : this.seller.id + 1,
         quantitySold: result.quantitySold,
@@ -104,11 +107,23 @@ export class DetailsPageComponent implements OnInit {
     this.getTopTen();
   }
 
-  editSeller(){
+  editSeller(seller: Salesperson){
     const instance = this.modalService.open(AddSellerDialogComponent);
-    instance.componentInstance.seller = {};
+    instance.componentInstance.seller = {
+      id: seller.id,
+      name: seller.name,
+      category: seller.category,
+      imagePath: seller.imagePath
+    }
     instance.componentInstance.edit = true;
-    instance.result.then(result => {
+    instance.result.then((result : Salesperson) => {
+      if(result.name.length === 0 ||
+      result.category.length === 0 ||
+      result.imagePath.length === 0  
+      ){
+        this.toastr.error("Make sure every text field contains text", "error");
+        return;
+      }
       const editedSeller = {
         id : this.sellerId,
         name : result.name,
@@ -126,7 +141,7 @@ export class DetailsPageComponent implements OnInit {
 
   editProduct(product: Product){
     const instance = this.modalService.open(AddProductDialogComponent);
-    //Sendir inn gögnin á 
+    //Sýnir gögnin sem á að breyta í forminu 
     instance.componentInstance.product = {
       id: product.id,
       quantitySold: product.quantitySold,
@@ -136,7 +151,10 @@ export class DetailsPageComponent implements OnInit {
       price: product.price
     };
     instance.componentInstance.edit = true;
-    instance.result.then(result => {
+    instance.result.then((result: Product) => {
+      if(this.invalid(result)){
+          return;
+      }
       const editedProduct = {
         id : product.id,
         quantitySold: result.quantitySold,
@@ -156,6 +174,18 @@ export class DetailsPageComponent implements OnInit {
     })
     .catch((error)=>{
     });
+  }
+
+  invalid(result){
+    //Validation fyrir formið
+      if(!result.imagePath || 
+      result.name.length === 0 ||
+      result.price < 0 ||
+      result.quantityInStock < 0 ||
+      result.quantitySold < 0){
+        this.toastr.error("Make sure every text field is with text and every number is greater then 0", "error");
+        return true;
+      }
   }
 
   displayError(message, error){
