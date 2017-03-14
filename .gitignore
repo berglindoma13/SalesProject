@@ -27,7 +27,7 @@ Client/.idea
 /.sass-cache
 /connect.lock
 /coverage/*
-Client/coverage/*
+Client/coverage
 /libpeerconnection.log
 npm-debug.log
 testem.log
@@ -41,3 +41,5 @@ testem.log
 .DS_Store
 Thumbs.db
 .idea
+
+Client/coverage/*

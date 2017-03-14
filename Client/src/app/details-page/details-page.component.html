@@ -1,69 +1,64 @@
 <div >
-    <div id="header" class="row" *ngIf = seller>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-            <img src={{seller.imagePath}}>
-        </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-            <p> Seller: {{seller.name}} <br> Category: {{seller.category}}</p>
-            <button (click)="editSeller()">Edit Seller</button>
-        </div>
+  <div id="header" class="row" *ngIf = seller>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+      <img src={{seller.imagePath}}>
     </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+      <p> Seller: {{seller.name}} <br> Category: {{seller.category}}</p>
+      <button (click)="editSeller()">Edit Seller</button>
+    </div>
+  </div>
 </div>
 
 
 
 <body>
-  <button class="btn btn-lg btn-outline-primary" id="addbutton" (click)="addProduct()">Add Product</button>
+<button class="btn btn-lg btn-outline-primary" id="addbutton" (click)="addProduct()">Add Product</button>
 
-    <ngb-tabset>
-        <ngb-tab title="All Products">
-            <template ngbTabContent>
-            <div *ngIf="!noProducts" id="products" class="row">
-              <h2 id="allproducts" >All Products</h2>
-                <div id="product" *ngFor="let product of allProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <div id="productInCenter">
-                      <a (click)="editProduct(product.id)">
-                        <img src={{product.imagePath}}>
-                      </a>
-                        <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
-                    </div>
-                </div>
-            </div>
-              <div *ngIf="noProducts">
-                <p>This seller has no products!</p>
-              </div>
-            </template>
-        </ngb-tab>
-
-        <ngb-tab title="Top Ten Products" (tabChange)="getTopTen()">
-            <template ngbTabContent>
-              <div *ngIf="!noProducts"  id="topTenProducts" class="row">
-                <h2 id="alltopproducts">Top 10 Products</h2>
-                <div id="topten" *ngFor="let product of topTenProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                  <div id="toptenInCenter">
-                    <a (click)="editProduct()">
-                      <img src={{product.imagePath}}>
-                    </a>
-                    <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
-                  </div>
-                </div>
-              </div>
-
-              <div *ngIf="noProducts">
-                <p>This seller has no products!</p>
-              </div>
-            </template>
-        </ngb-tab>
-    </ngb-tabset>
-
-
-
-    <template ngbModalContainer>
-
+<ngb-tabset>
+  <ngb-tab title="All Products">
+    <template ngbTabContent>
+      <div *ngIf="!noProducts" id="products" class="row">
+        <h2 id="allproducts" >All Products</h2>
+        <div id="product" *ngFor="let product of allProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div id="productInCenter">
+            <a (click)="editProduct(product.id)">
+              <img src={{product.imagePath}}>
+            </a>
+            <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="noProducts">
+        <p>This seller has no products!</p>
+      </div>
     </template>
+  </ngb-tab>
+
+  <ngb-tab title="Top Ten Products" (tabChange)="getTopTen()">
+    <template ngbTabContent>
+      <div *ngIf="!noProducts"  id="topTenProducts" class="row">
+        <h2 id="alltopproducts">Top 10 Products</h2>
+        <div id="topten" *ngFor="let product of topTenProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div id="toptenInCenter">
+            <a (click)="editProduct()">
+              <img src={{product.imagePath}}>
+            </a>
+            <figcaption>{{product.name}} &emsp; {{product.price}}</figcaption>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="noProducts">
+        <p>This seller has no products!</p>
+      </div>
+    </template>
+  </ngb-tab>
+</ngb-tabset>
+
+
+
+<template ngbModalContainer>
+
+</template>
 </body>
-
-
-
-
-

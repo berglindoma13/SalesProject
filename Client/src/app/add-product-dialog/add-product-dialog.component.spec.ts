@@ -19,6 +19,8 @@ describe('AddProductDialogComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should be t')
+
   /*it('should create', () => {
     expect(component).toBeTruthy();
   });*/
