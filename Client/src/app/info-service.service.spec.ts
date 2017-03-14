@@ -156,15 +156,15 @@ describe('InfoServiceService', () => {
   it('should edit seller', (done) => {
     backend.connections.subscribe((c: MockConnection) => {
       let connection = c;
-      let options = new ResponseOptions({body: sellers});
-      expect(connection.request.url).toEqual('http://localhost:5000/api/sellers');
-      expect(connection.request.method).toEqual(RequestMethod.Post);
+      let options = new ResponseOptions({body: newguy});
+      expect(connection.request.url).toEqual('http://localhost:5000/api/sellers/5');
+      expect(connection.request.method).toEqual(RequestMethod.Put);
 
       connection.mockRespond(new Response(options));
     });
 
-    service.addSeller(newguy).subscribe((response) => {
-      expect(response).toEqual(sellers);
+    service.editSeller(newguy).subscribe((response) => {
+      expect(response).toEqual(newguy);
       done();
     });
   });

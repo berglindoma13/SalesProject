@@ -55,8 +55,4 @@ export class InfoServiceService {
       });
   }
 
-  testingUnitTests(){
-    return 1;
-  }
-
 }
