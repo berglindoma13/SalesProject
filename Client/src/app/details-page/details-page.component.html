@@ -1,25 +1,26 @@
-<div >
-  <div id="header" class="row" *ngIf = seller>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-      <img src={{seller.imagePath}}>
+<body>
+<div class="container-fluid">
+    <div id="header" class="row" *ngIf=seller>
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+        <img src={{seller.imagePath}}>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 ">
+        <p> Seller: {{seller.name}} <br> Category: {{seller.category}}</p>
+        <button class="btn btn-lg btn-outline-primary" (click)="editSeller(seller)">Edit Seller</button>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-      <p> Seller: {{seller.name}} <br> Category: {{seller.category}}</p>
-      <button (click)="editSeller(seller)">Edit Seller</button>
-    </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 offset-9">
+    <button class="btn btn-lg btn-outline-primary" id="addbutton" (click)="addProduct()">Add Product</button>
   </div>
 </div>
-
-
-
-<body>
-<button class="btn btn-lg btn-outline-primary" id="addbutton" (click)="addProduct()">Add Product</button>
-
+<div class="row">
+  <div class=" col-md-12">
 <ngb-tabset>
   <ngb-tab title="All Products">
     <template ngbTabContent>
       <div *ngIf="!noProducts" id="products" class="row">
-        <h2 id="allproducts" >All Products</h2>
         <div id="product" *ngFor="let product of allProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
           <div id="productInCenter">
             <a (click)="editProduct(product)">
@@ -34,11 +35,9 @@
       </div>
     </template>
   </ngb-tab>
-
   <ngb-tab title="Top Ten Products" (tabChange)="getTopTen()">
     <template ngbTabContent>
-      <div *ngIf="!noProducts"  id="topTenProducts" class="row">
-        <h2 id="alltopproducts">Top 10 Products</h2>
+      <div *ngIf="!noProducts" id="topTenProducts" class="row">
         <div id="topten" *ngFor="let product of topTenProducts" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
           <div id="toptenInCenter">
             <a (click)="editProduct(product)">
@@ -55,10 +54,8 @@
     </template>
   </ngb-tab>
 </ngb-tabset>
-
-
-
+  </div>
 <template ngbModalContainer>
-
 </template>
+</div>
 </body>

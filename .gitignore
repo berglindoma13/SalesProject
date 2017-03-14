@@ -8,7 +8,6 @@
 */node_modules
 
 # IDEs and editors
-Client/.idea
 .project
 .classpath
 .c9/
@@ -41,5 +40,3 @@ testem.log
 .DS_Store
 Thumbs.db
 .idea
-
-Client/coverage/*
