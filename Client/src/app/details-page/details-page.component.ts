@@ -81,7 +81,7 @@ export class DetailsPageComponent implements OnInit {
 
   addProduct(){
     const instance = this.modalService.open(AddProductDialogComponent);
-    instance.componentInstance.product = {}; //Vesen á þessum af því við erum að skila promise
+    instance.componentInstance.product = {};
     instance.result.then(result => {
       const newProduct = {
         id : this.seller.id + 1,

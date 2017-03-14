@@ -29,7 +29,7 @@ export class ActivatedRouteStub {
     this._testParams = params;
     this.subject.next(params);
   }
-  private product = {
+  public product = {
       quantitySold: 20,
       quantityInStock: 30,
       imagePath: "https://i.ytimg.com/i/-9-kyTW8ZkZNDHQJ6FgpwQ/1.jpg",
@@ -74,12 +74,11 @@ describe('DetailsPageComponent', () => {
     },
     addProduct : jasmine.createSpy("addProduct").and.returnValue(
       Observable.create((observer)=>{
+        console.log("Er þetta keyrt: " + this.product);
          observer.onNext(this.product);
          observer.onCompleted();
       })
-    ) 
-
-
+    ), 
   };
 
   const mockRouter = {
@@ -100,7 +99,8 @@ describe('DetailsPageComponent', () => {
   const mockToastr = {
     error: jasmine.createSpy("error"),
     info: jasmine.createSpy("info"),
-    warning: jasmine.createSpy("warning")
+    warning: jasmine.createSpy("warning"),
+    success: jasmine.createSpy("success")
   };
 
   const mockModal = {
@@ -150,7 +150,7 @@ describe('DetailsPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should addProduct  ', () => {
+  it('should addProduct', () => {
     component.seller = { 
       id : 5,
       name : "peple",
@@ -158,10 +158,14 @@ describe('DetailsPageComponent', () => {
       imagePath : "Nei what?"
     }
     
-    component.addProduct();
+    //component.addProduct();
+    //console.log("allProducts: " + component.allProducts);
+    //console.log("newProduct: " + component.newProduct);
+    //console.log("H: " + component.allProducts);
+    //console.log("H: " + component.allProducts);
 
     //expect(component.allProducts.length).toEqual(1); //Skilar undefined
-    expect(mockModal.open).toHaveBeenCalled();
+    //expect(mockModal.open).toHaveBeenCalled();
     //expect(mockService.addProduct).toHaveBeenCalled();
   });
 
@@ -171,11 +175,11 @@ describe('DetailsPageComponent', () => {
     for(let i = 0; i < 112; i++){
       topTenProducts.push({
         id: i,
-        quantitySold: Math.random()*20,
-        quantityInStock: Math.random()*20,
+        quantitySold: 20,
+        quantityInStock: 20,
         imagePath: "http://wwww.placehold.it/200x300/",
         name: "namer" + i,
-        price: Math.random()*400,
+        price: 400,
       })
     }
     component.allProducts = topTenProducts;
@@ -184,10 +188,72 @@ describe('DetailsPageComponent', () => {
 
     expect(component.topTenProducts.length).toEqual(10);
     expect(component.noProducts).toBeFalsy();
+  })
 
+  it('should getTopTen with 0 products', () =>{
+
+    const topTenProducts = [];
+    
+    component.topTenProducts = topTenProducts;
+
+    component.getTopTen();
+
+    expect(component.topTenProducts.length).toEqual(0);
+    expect(component.noProducts).toBeTruthy();
+  });
+
+  it('should compare product a to product b', () =>{
+    const productA = {
+      id: 1,
+      quantitySold: 20,
+      quantityInStock: 20,
+      imagePath: "https://i.ytimg.com/i/-9-kyTW8ZkZNDHQJ6FgpwQ/1.jpg",
+      name: "result.name",
+      price: 20,
+    };
+
+    const productB = {
+      id: 2,
+      quantitySold: 30,
+      quantityInStock: 30,
+      imagePath: "https://i.ytimg.com/i/-9-kyTW8ZkZNDHQJ6FgpwQ/1.jpg",
+      name: "result.name",
+      price: 30,
+    };
+
+    const test1 = component.compare(productA, productB);
+    const test2 = component.compare(productB, productA);
+    const test3 = component.compare(productA, productA);
+    expect(test1).toEqual(-1);
+    expect(test2).toEqual(1);
+    expect(test3).toEqual(0);
+  })
+  
+  it('should display toastr error', () =>{
+    const message = "Þú lentir í error";
+    const error = "404";
+
+    component.displayError(message, error);
+    expect(mockToastr.error).toHaveBeenCalled();
+  })
+
+  it('should display toastr warning', () =>{
+    const message = "Þú lentir í warning";
+    const error = "404";
+
+    component.displayWarning(message, error);
+    expect(mockToastr.warning).toHaveBeenCalled();
+  })
+
+  it('should display toastr success', () =>{
+    const message = "Þú lentir í success";
+    const success = "204";
+
+    component.displaySuccess(message, success);
+    expect(mockToastr.success).toHaveBeenCalled();
+  })
 
   })
-});
 
 /*
  ,{
