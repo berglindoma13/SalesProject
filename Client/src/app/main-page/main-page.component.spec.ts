@@ -30,18 +30,18 @@ describe('MainPageComponent', () => {
         category: "annad",
         imagePath: ""
       },
-      getAllSellers: jasmine.createSpy("getAllSellers").and.returnValue(
-        Observable.create((observer => {
-          observer.onNext(this.sellerList);
-          observer.onCompleted();
-        })
-      )),
-      addSeller: jasmine.createSpy("addSeller").and.returnValue(
-        Observable.create((observer)=>{
-          observer.onNext(this.AddedSeller);
-          observer.onCompleted();
-        })
-      )
+      getAllSellers: function() {
+    return {
+      subscribe: function(fnSuccess, fnError){
+        if(mockService.successGetSellers === true){
+            fnSuccess(mockService.sellerList)
+        }
+        else{
+          fnError();
+        }
+      }
+    }
+  },
   };
 
   const mockModal = {
